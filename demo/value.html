@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="p"><b>内部文字</b></div>
+        <!-- <input type="text" value="默认值" /> -->
+        <input type="range" min="2" max="10" />
+
+        <label><input type="checkbox" name="fav" value="apple" />苹果 </label>
+        <label><input type="checkbox" name="fav" value="putao" checked />葡萄 </label>
+        <label><input type="checkbox" name="fav" value="juzi" />橘子</label>
+
+        <hr />
+
+        <select name="" id="">
+            <option value="">请选择</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <script>
+            var p = document.querySelector(".p");
+            var input = document.querySelector("input");
+            console.log(p.innerHTML);
+            console.log(p.innerText);
+            console.log(input.value);
+
+            input.oninput = function () {
+                console.log(this.value);
+                p.innerText = this.value;
+            };
+
+            var checkbox = document.querySelector("input[type=checkbox]");
+            checkbox.onchange = function () {
+                console.log(this.value);
+                console.log(this.checked);
+            };
+
+            var select = document.querySelector("select");
+            select.onchange = function () {
+                console.log(this.value);
+                p.innerText = this.value;
+            };
+        </script>
+    </body>
+</html>

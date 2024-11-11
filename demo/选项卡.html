@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <ul class="btns">
+            <li class="active" index="0">A</li>
+            <li index="1">B</li>
+            <li index="2">C</li>
+        </ul>
+
+        <ul class="tab-contents">
+            <li class="active">A content</li>
+            <li>B content</li>
+            <li>C content</li>
+        </ul>
+        <style>
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            .btns {
+                width: 200px;
+                background-color: gray;
+                display: flex;
+                flex: 1;
+                justify-content: space-evenly;
+            }
+            .btns li {
+                width: 33%;
+                text-align: center;
+            }
+            .btns li.active {
+                background-color: red;
+                color: white;
+            }
+
+            .tab-contents li {
+                display: none;
+            }
+            .tab-contents li.active {
+                color: blue;
+                display: block;
+            }
+        </style>
+
+        <script>
+            var tabs = document.getElementsByClassName("btns")[0].getElementsByTagName("li");
+            var tabContents = document.getElementsByClassName("tab-contents")[0].getElementsByTagName("li");
+
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].onclick = function () {
+                    console.log(i, this, this.index, this.getAttribute("index"));
+
+                    // 规范的html属性可以使用 element.id  element.title className
+                    // 不规范的html属性 使用getAttribute获取
+
+                    // for (var j = 0; j < tabContents.length; j++) {
+                    //     tabContents[j].classList.remove("active");
+                    // }
+                    // tabContents[this.getAttribute("index")].classList.add("active");
+
+                    // 处理 contents
+                    for (var j = 0; j < tabContents.length; j++) {
+                        if (j == this.getAttribute("index")) {
+                            tabContents[j].classList.add("active");
+                        } else {
+                            tabContents[j].classList.remove("active");
+                        }
+                    }
+
+                    // 处理 tabs
+                    for (var j = 0; j < tabs.length; j++) {
+                        if (j == this.getAttribute("index")) {
+                            tabs[j].classList.add("active");
+                        } else {
+                            tabs[j].classList.remove("active");
+                        }
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>

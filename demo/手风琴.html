@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <img src="https://images.unsplash.com/photo-1513907404652-d138942b8859?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8a2V5JTIwd2VzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" alt="" />
+            </li>
+            <li>
+                <img src="https://images.unsplash.com/photo-1490644658840-3f2e3f8c5625?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bmV3JTIweW9ya3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
+            </li>
+            <li>
+                <img src="https://images.unsplash.com/photo-1562036861-44811e0b4481?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmFoYW1hc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
+            </li>
+            <li>
+                <img src="https://images.unsplash.com/photo-1529426301869-82f4d98d3d81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3ViYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/11434418/pexels-photo-11434418.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
+            </li>
+        </ul>
+        <style>
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                /* display: flex; */
+                width: 400px;
+                position: relative;
+                background-color: aqua;
+                height: 300px;
+                overflow: hidden;
+            }
+            ul li {
+                width: 200px;
+                height: 300px;
+                /* flex-shrink: 0; */
+                position: absolute;
+                top: 0;
+                left: 0;
+                /* z-index: ; */
+
+                transition: all 0.5s;
+                /* all代表哪些css样式需要应用过渡效果  1s过渡持续多久*/
+                /* CSS3 过渡效果 两种样式切换的时候浏览器自动计算动画 */
+                /* 老版本不支持c3的用js动画 */
+            }
+            ul li img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <script>
+            var x;
+            var gi = 0;
+            var lis = document.querySelectorAll("ul li");
+            // querySelectorAll 获取所有匹配元素 (css选择器) 多个NodeList(类数组) 有foreach
+            // getElementsByClassName  多个HTMLCollection(类数组)
+            // getElementById  获取元素 (id)
+
+            lis.forEach((item, index) => {
+                item.style.left = index * 50 + "px";
+                item.style.zIndex = index;
+
+                item.onmouseover = function () {
+                    console.log(this, index);
+                    gi = index;
+                    // this.style.
+                    lis.forEach((element, i) => {
+                        // console.log(element, i, index);
+                        if (i <= index) {
+                            element.style.left = i * 50 + "px";
+                        } else {
+                            element.style.left = (i - 1) * 50 + 200 + "px";
+                        }
+                    });
+                };
+            });
+
+            function activeIndex(index) {
+                lis.forEach((element, i) => {
+                    // console.log(element, i, index);
+                    if (i <= index) {
+                        element.style.left = i * 50 + "px";
+                    } else {
+                        element.style.left = (i - 1) * 50 + 200 + "px";
+                    }
+                });
+            }
+
+            x = setInterval(() => {
+                gi++;
+                if (gi > 4) {
+                    gi = 0;
+                }
+                activeIndex(gi);
+            }, 1000);
+            document.querySelector("ul").onmouseover = function () {
+                clearInterval(x);
+            };
+            document.querySelector("ul").onmouseout = function () {
+                x = setInterval(() => {
+                    gi++;
+                    if (gi > 4) {
+                        gi = 0;
+                    }
+                    activeIndex(gi);
+                }, 1000);
+            };
+        </script>
+
+        <div class="box">box</div>
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                font-size: 12px;
+                /* transition: all 3s; */
+            }
+            /* .box:hover {
+                width: 200px;
+                height: 200px;
+                background-color: blue;
+                font-size: 36px;
+            } */
+        </style>
+
+        <script>
+            // 不支持css3   JS动画原理  setInterval
+            var box = document.querySelector(".box");
+            // querySelector 选择第一个匹配的元素
+
+            // box.style.width = "200px";
+            var w = 100;
+
+            // 每一个定时器函数都会返回一个 timer
+            var timer = setInterval(() => {
+                w++;
+                box.style.width = w + "px";
+
+                if (w > 200) {
+                    // 取消定时器
+                    clearInterval(timer);
+                }
+            }, 30);
+            // 最快能写多少 每隔多少毫秒 1ms
+            // 显示器刷新率 60Hz 144Hz   1秒刷新60次  16.66~41 =30
+        </script>
+    </body>
+</html>

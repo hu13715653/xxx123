@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <ul class="seats">
+            <!-- <li class="selected"></li>
+            <li class="disabled"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li> -->
+        </ul>
+
+        <style>
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                width: 160px;
+                flex-wrap: wrap;
+            }
+            ul li {
+                width: 30px;
+                height: 30px;
+                background: green;
+                margin: 5px;
+                color: white;
+                text-align: center;
+                line-height: 30px;
+            }
+            ul li.disabled {
+                background: red;
+            }
+            ul li.selected::before {
+                content: "√";
+                /* background-color: antiquewhite; */
+            }
+        </style>
+
+        <script>
+            var seatDom = document.getElementsByClassName("seats")[0];
+            var disabled = [9, 10];
+            for (var i = 0; i < 16; i++) {
+                var li = document.createElement("li");
+                li.onclick = function () {
+                    if (!this.classList.contains("disabled")) {
+                        this.classList.add("selected");
+                    }
+                    // console.log(this);
+                };
+
+                if (disabled.includes(i)) {
+                    li.classList.add("disabled");
+                }
+                seatDom.appendChild(li);
+            }
+        </script>
+    </body>
+</html>

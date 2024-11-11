@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="box">俭学韩够，那二罪井你临学国尝可以一圣天谓，骂到恨担变厅用视了雷次土兴谓不为认，老天喜上姑量，君土然不就，系她井区，已笔屯洪光人秦自但因尹和，忧么谭守藏舟视主大胆留忧相倒价，认皇十入斯呼互谷说是，松弟。</div>
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                padding: 10px;
+                border: 20px dashed orange;
+                margin: 30px;
+                /* overflow-y: scroll; */
+                position: relative;
+                left: 300px;
+            }
+        </style>
+        <script>
+            var box = document.querySelector(".box");
+
+            console.log("box.clientWidth", box.clientWidth); //padding
+            console.log("box.offsetWidth", box.offsetWidth); // border
+            console.log("box.offsetLeft", box.offsetLeft); // 浏览器最左边到元素border的距离
+            console.log("box.offsetTop", box.offsetTop);
+            console.log("box.clientLeft", box.clientLeft); // border的大小
+            console.log("box.scrollTop", box.scrollTop); // 已经滚动的高度
+            console.log("box.scrollHeight", box.scrollHeight); // 滚动区域的总高度
+        </script>
+
+        <div class="big">
+            big
+            <div class="small">small</div>
+        </div>
+
+        <style>
+            .big {
+                width: 200px;
+                height: 200px;
+                background-color: lightblue;
+            }
+            .small {
+                width: 100px;
+                height: 100px;
+                background-color: aquamarine;
+                margin-left: 20px;
+            }
+        </style>
+
+        <script>
+            document.querySelector(".big").onclick = function (event) {
+                console.log("big", this.offsetLeft, event);
+                // event 事件对象
+                // event.offsetX 这个元素(事件触发的元素)左上角为基准到鼠标点击的X轴距离
+                // event.clientX 浏览器最左边到鼠标点击的X轴距离
+                // event.screenX 屏幕最左边到鼠标点击的X轴距离
+
+                console.log(event.target, this);
+                // target 事件触发的元素
+                // this 是绑定事件的元素
+            };
+            // document.querySelector(".big").onmousemove = function () {
+            //     console.log("big", this.offsetLeft);
+            // };
+        </script>
+    </body>
+</html>

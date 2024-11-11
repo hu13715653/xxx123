@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="xxx">
+            <div class="stage">
+                <img src="./banner1.jpg" alt="" />
+                <div class="mask"></div>
+            </div>
+            <div class="preview">
+                <img src="./banner1.jpg" alt="" />
+            </div>
+        </div>
+
+        <style>
+            .xxx {
+                display: flex;
+            }
+            .stage {
+                width: 400px;
+                height: 400px;
+                position: relative;
+            }
+            .stage:hover {
+                cursor: zoom-in;
+            }
+            .stage img {
+                width: 100%;
+            }
+            .stage .mask {
+                width: 100px;
+                height: 100px;
+                background-image: url("./mask-bg.png");
+                /* background-color: rgba(255, 0, 0, 0.342); */
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
+
+            .preview {
+                width: 400px;
+                height: 400px;
+                box-shadow: 0 0 5px 0 rgb(153, 153, 153);
+                overflow: hidden;
+                margin-left: 20px;
+                position: relative;
+            }
+            .preview img {
+                width: 400%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        </style>
+
+        <script>
+            var stage = document.querySelector(".stage");
+            var mask = document.querySelector(".mask");
+            var preview = document.querySelector(".preview img");
+
+            // onmousemove  over out   move移动
+            stage.onmousemove = function (event) {
+                // console.log(event.offsetX);
+                // console.log(event.clientX - stage.offsetLeft);
+                var x = event.clientX - stage.offsetLeft;
+                var y = event.clientY - stage.offsetTop;
+                console.log(x, y);
+                // 鼠标的位置
+
+                // mask左上角
+                maskX = x - 50;
+                maskY = y - 50;
+                if (maskX < 0) {
+                    maskX = 0;
+                }
+                if (maskX > stage.offsetWidth - mask.offsetWidth) {
+                    maskX = stage.offsetWidth - mask.offsetWidth;
+                }
+                if (maskY < 0) {
+                    maskY = 0;
+                }
+                if (maskY > stage.offsetHeight - mask.offsetHeight) {
+                    maskY = stage.offsetHeight - mask.offsetHeight;
+                }
+
+                mask.style.left = maskX + "px";
+                mask.style.top = maskY + "px";
+                // mask左上角的位置
+
+                // preview
+                preview.style.left = -maskX * 4 + "px";
+                preview.style.top = -maskY * 4 + "px";
+            };
+        </script>
+    </body>
+</html>
